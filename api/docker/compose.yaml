@@ -1,0 +1,10 @@
+services:
+  pathways_api:
+    container_name: PathwaysAPI
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../app:/app
+    ports:
+      - "80:80"
