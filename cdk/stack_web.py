@@ -30,7 +30,7 @@ class WebStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         # S3 Bucket to store the built React app
-        bucket = s3.Bucket(self, "Web", website_index_document="index.html", website_error_document="index.html")
+        self.bucket = s3.Bucket(self, "Web", website_index_document="index.html", website_error_document="index.html")
 
         #============== CI/CD ==============#
 
@@ -42,9 +42,9 @@ class WebStack(Stack):
         # GitHub authentication (Make sure to set up GitHub credentials in AWS Secrets Manager)
         source_action = codepipeline_actions.GitHubSourceAction(
             action_name="GitHubSource",
-            owner="KenoPeck",
-            repo="ACME18-SCALE",
-            oauth_token=SecretValue.secrets_manager("github_access_token"),
+            owner="jackgw",
+            repo="PortfolioWebsite",
+            oauth_token=SecretValue.secrets_manager("github_auth_token"),
             output=source_output,
             branch="main",  # or the branch you want to use
         )
@@ -59,8 +59,13 @@ class WebStack(Stack):
                 "version": "0.2",
                 "phases": {
                     "install": {
+                        "runtime-versions": {
+                            "nodejs": "20.x"
+                        },
                         "commands": [
+                            "cd web",
                             "npm install -g npm@latest",
+                            "npm install -g @angular/cli",
                             "npm install"
                         ]
                     },
@@ -83,14 +88,14 @@ class WebStack(Stack):
         )
 
         # Grant permissions to CodeBuild to write to the S3 bucket
-        bucket.grant_read_write(build_project.role)
+        self.bucket.grant_read_write(build_project.role)
 
         # CodeBuild Action
         build_stage = codepipeline_actions.CodeBuildAction(
             action_name="BuildReactApp",
             project=build_project,
             input=source_output,
-            outputs=[codepipeline.Artifact()],
+            outputs=[codepipeline.Artifact("CompiledApp")],
         )
 
         ## DEPLOY STAGE ##
@@ -98,8 +103,8 @@ class WebStack(Stack):
         # Deploy Action to S3
         deploy_stage = codepipeline_actions.S3DeployAction(
             action_name="DeployToS3",
-            bucket=bucket,
-            input=codepipeline.Artifact(),
+            bucket=self.bucket,
+            input=codepipeline.Artifact("CompiledApp"),
         )
 
         ## FULL PIPELINE ##

@@ -60,7 +60,7 @@ class ApiStack(Stack):
 
         # Create Fargate Service and ALB
         image = ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
-            image=ecs.ContainerImage.from_ecr_repository(self.ecr_repo),
+            image=ecs.ContainerImage.from_registry("amazon/amazon-ecs-sample") #.from_ecr_repository(self.ecr_repo),
         )
         self.ecs_service = ecs_patterns.ApplicationLoadBalancedFargateService(
             self,
@@ -70,7 +70,10 @@ class ApiStack(Stack):
             memory_limit_mib=512,
             desired_count=1,
             task_image_options=image,
-            capacity_provider_strategies=[ecs.CapacityProviderStrategy("FARGATE_SPOT")]
+            capacity_provider_strategies=[ecs.CapacityProviderStrategy(
+                capacity_provider="FARGATE_SPOT",
+                weight=1
+            )]
         )
 
         #============== CI/CD ==============#
@@ -83,9 +86,9 @@ class ApiStack(Stack):
         # GitHub authentication (Make sure to set up GitHub credentials in AWS Secrets Manager)
         source_action = codepipeline_actions.GitHubSourceAction(
             action_name="GitHubSource",
-            owner="KenoPeck",
-            repo="ACME18-SCALE",
-            oauth_token=SecretValue.secrets_manager("github_access_token"),
+            owner="jackgw",
+            repo="PortfolioWebsite",
+            oauth_token=SecretValue.secrets_manager("github_auth_token"),
             output=source_output,
             branch="main",
         )
@@ -102,7 +105,8 @@ class ApiStack(Stack):
                     "pre_build": {
                         "commands": [
                             "echo Logging in to Amazon ECR...",
-                            "aws --version",
+                            "aws --version",    # DEBUG
+                            "ls -R",            # DEBUG
                             "aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI",
                             "COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)",
                             "BUILD_TAG=$(echo $CODEBUILD_BUILD_ID | awk -F\":\" '{print $2}')",
@@ -113,7 +117,7 @@ class ApiStack(Stack):
                         "commands": [
                             "echo Build started on `date`",
                             "echo Building the Docker image...",
-                            "docker build -f docker/Dockerfile -t $REPOSITORY_URI:latest .",
+                            "docker build -f ./api/docker/Dockerfile -t $REPOSITORY_URI:latest ./api",
                             "docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$BUILD_LABEL",
                             "docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$COMMIT_HASH",
                             "printf '{\"ImageUri\":\"%s\"}' $REPOSITORY_URI:$BUILD_LABEL > image.json"
@@ -144,6 +148,9 @@ class ApiStack(Stack):
                 "AWS_DEFAULT_REGION": codebuild.BuildEnvironmentVariable(value=self.region),
             },
         )
+
+        # Grant ECR permissions to build project
+        self.ecr_repo.grant_pull_push(build_project.role)
 
         # CodeBuild Action
         build_action = codepipeline_actions.CodeBuildAction(

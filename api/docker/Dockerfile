@@ -4,7 +4,7 @@ FROM python:3.13-slim
 WORKDIR /app
 
 # Copy project files into container
-COPY ../requirements.txt /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt

@@ -32,14 +32,17 @@ class CloudFrontStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         # Define the CloudFront distribution
-        cloudfront_distribution = cloudfront.Distribution(self, "CloudFrontDistribution",
+        cloudfront_distribution = cloudfront.Distribution(
+            self, 
+            "CloudFrontDistribution",
             default_behavior=cloudfront.BehaviorOptions(
-                origin=origins.S3Origin(web_stack.site_bucket),
+                origin=origins.S3StaticWebsiteOrigin(web_stack.bucket),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             ),
             additional_behaviors={
                 f"/api/{API_VERSION}/*": cloudfront.BehaviorOptions(
-                    origin=origins.LoadBalancerV2Origin(api_stack.api_load_balancer,
+                    origin=origins.HttpOrigin(
+                        api_stack.ecs_service.load_balancer.load_balancer_dns_name,
                         protocol_policy=cloudfront.OriginProtocolPolicy.HTTPS_ONLY
                     ),
                     allowed_methods=cloudfront.AllowedMethods.ALLOW_ALL,
