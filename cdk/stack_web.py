@@ -60,7 +60,7 @@ class WebStack(Stack):
                 "phases": {
                     "install": {
                         "runtime-versions": {
-                            "nodejs": "20.x"
+                            "nodejs": "22"
                         },
                         "commands": [
                             "cd web",
@@ -79,11 +79,11 @@ class WebStack(Stack):
                     "files": [
                         "**/*"
                     ],
-                    "base-directory": "build"  # React build directory
+                    "base-directory": "web/dist"
                 }
             }),
             environment=codebuild.BuildEnvironment(
-                build_image=codebuild.LinuxBuildImage.AMAZON_LINUX_2_3
+                build_image=codebuild.LinuxBuildImage.AMAZON_LINUX_2_5
             )
         )
 

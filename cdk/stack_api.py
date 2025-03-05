@@ -76,6 +76,10 @@ class ApiStack(Stack):
             )]
         )
 
+        # Grant ECR Pull Permissions to Task Execution Role
+        self.ecr_repo.grant_pull(self.ecs_service.task_definition.execution_role)
+
+
         #============== CI/CD ==============#
 
         ## SOURCE STAGE ##
@@ -120,7 +124,7 @@ class ApiStack(Stack):
                             "docker build -f ./api/docker/Dockerfile -t $REPOSITORY_URI:latest ./api",
                             "docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$BUILD_LABEL",
                             "docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$COMMIT_HASH",
-                            "printf '{\"ImageUri\":\"%s\"}' $REPOSITORY_URI:$BUILD_LABEL > image.json"
+                            "printf '[{\"name\":\"%s\",\"imageUri\":\"%s\"}]' $CONTAINER_NAME $REPOSITORY_URI:$BUILD_LABEL > imagedefinitions.json"
                         ]
                     },
                     "post_build": {
@@ -135,7 +139,7 @@ class ApiStack(Stack):
                 },
                 "artifacts": {
                     "files": [
-                        "image.json"
+                        "imagedefinitions.json"
                     ]
                 }
             }),
@@ -146,6 +150,7 @@ class ApiStack(Stack):
             environment_variables={
                 "REPOSITORY_URI": codebuild.BuildEnvironmentVariable(value=self.ecr_repo.repository_uri),
                 "AWS_DEFAULT_REGION": codebuild.BuildEnvironmentVariable(value=self.region),
+                "CONTAINER_NAME": codebuild.BuildEnvironmentVariable(value=self.ecs_service.task_definition.default_container.container_name),
             },
         )
 
@@ -166,7 +171,7 @@ class ApiStack(Stack):
         deploy_action = codepipeline_actions.EcsDeployAction(
             action_name="DeployToECS",
             service=self.ecs_service.service,
-            input=source_output,  # You could add a Docker image artifact here if needed
+            input=codepipeline.Artifact("BuildOutput"),
         )
 
         # CodePipeline
