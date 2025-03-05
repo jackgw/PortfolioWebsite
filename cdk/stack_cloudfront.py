@@ -43,7 +43,7 @@ class CloudFrontStack(Stack):
                 f"/api/{API_VERSION}/*": cloudfront.BehaviorOptions(
                     origin=origins.HttpOrigin(
                         api_stack.ecs_service.load_balancer.load_balancer_dns_name,
-                        protocol_policy=cloudfront.OriginProtocolPolicy.HTTPS_ONLY
+                        protocol_policy=cloudfront.OriginProtocolPolicy.HTTP_ONLY
                     ),
                     allowed_methods=cloudfront.AllowedMethods.ALLOW_ALL,
                     viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
