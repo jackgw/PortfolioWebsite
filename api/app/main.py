@@ -1,10 +1,9 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-# from config import POSTGRES_URL, POSTGRES_USERNAME, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DB, NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
-# from app.routers import login.py, register.py
 
 app = FastAPI(debug=True)
+router = APIRouter(prefix="/api/v1")
 
 # Configure CORS
 app.add_middleware(
@@ -15,13 +14,14 @@ app.add_middleware(
     allow_headers=["*"],    
 )
 
-# register routers
-# app.include_router(auth.router, prefix="/auth")
+# Routes
+@router.get("/")
+async def status():
+    return {"API Status": "Active"}
 
-@app.get("/")
-async def hello():
-    return {"message": "Hello World!"}
+# Register router
+app.include_router(router)
 
-
+# Start App
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=80, reload=True)
