@@ -1,4 +1,5 @@
-FROM python:3.13-slim
+# Get image from public AWS ECR repo
+FROM public.ecr.aws/docker/library/python:3.13-slim
 
 # Set the working directory in the container
 WORKDIR /api
