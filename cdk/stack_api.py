@@ -76,6 +76,11 @@ class ApiStack(Stack):
             )]
         )
 
+        # Configure health check to correctly determine if the API is active
+        self.ecs_service.target_group.configure_health_check(
+            path="/api/v1/status",  # Update if the API version changes.
+        )
+
         # Grant ECR Pull Permissions to Task Execution Role
         self.ecr_repo.grant_pull(self.ecs_service.task_definition.execution_role)
 

@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 # Routes
-@router.get("/")
+@router.get("/status")
 async def status():
     return {"API Status": "Active"}
 
