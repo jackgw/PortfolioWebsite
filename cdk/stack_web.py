@@ -4,6 +4,7 @@ import aws_cdk.aws_s3 as s3
 import aws_cdk.aws_codepipeline as codepipeline
 import aws_cdk.aws_codepipeline_actions as codepipeline_actions
 import aws_cdk.aws_codebuild as codebuild
+import aws_cdk.aws_iam as iam
 
 class WebStack(Stack):
     """
@@ -30,7 +31,20 @@ class WebStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         # S3 Bucket to store the built React app
-        self.bucket = s3.Bucket(self, "Web", website_index_document="index.html", website_error_document="index.html")
+        self.bucket = s3.Bucket(
+            self, 
+            "Web", 
+            website_index_document="index.html", 
+            website_error_document="index.html",
+            block_public_access=s3.BlockPublicAccess.BLOCK_ACLS
+        )
+
+        # Allow public access to bucket
+        self.bucket.add_to_resource_policy(iam.PolicyStatement(
+            actions=["s3:GetObject"],
+            resources=[f"{self.bucket.bucket_arn}/*"],
+            principals=[iam.ArnPrincipal("*")]
+        ))
 
         #============== CI/CD ==============#
 
