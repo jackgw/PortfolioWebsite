@@ -14,10 +14,15 @@ app.add_middleware(
     allow_headers=["*"],    
 )
 
-# Routes
-@router.get("/status")
+# Status
+@app.get("/")
 async def status():
     return {"API Status": "Active"}
+
+# Routes
+@router.get("/version")
+async def version():
+    return {"API Version": "v1.0.0"}
 
 # Register router
 app.include_router(router)
