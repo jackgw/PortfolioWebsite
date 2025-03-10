@@ -46,7 +46,19 @@ class ApiStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         # Create VPC
-        self.vpc = ec2.Vpc(self, "ApiVPC", max_azs=3)
+        self.vpc = ec2.Vpc(
+            self,
+            "ApiVPC",
+            max_azs=2,  # Increase for more redundancy
+            nat_gateways=0,
+            subnet_configuration=[
+                ec2.SubnetConfiguration(
+                    name="Public",
+                    map_public_ip_on_launch=True,       # Public subnet and IP needed for API to access internet.
+                    subnet_type=ec2.SubnetType.PUBLIC,
+                )
+            ]
+        )
 
         # Create an ECR Repository for the Docker image (automatically created)
         self.ecr_repo = ecr.Repository(self, "ApiECRRepo")
@@ -73,13 +85,15 @@ class ApiStack(Stack):
             capacity_provider_strategies=[ecs.CapacityProviderStrategy(
                 capacity_provider="FARGATE_SPOT",
                 weight=1
-            )]
+            )],
+            public_load_balancer=True,
+            assign_public_ip=True
         )
 
         # Configure health check to correctly determine if the API is active
-        self.ecs_service.target_group.configure_health_check(
-            path="/api/v1/status",  # Update if the API version changes.
-        )
+        # self.ecs_service.target_group.configure_health_check(
+        #     path="/api/v1/status",  # Update if the API version changes.
+        # )
 
         # Grant ECR Pull Permissions to Task Execution Role
         self.ecr_repo.grant_pull(self.ecs_service.task_definition.execution_role)
@@ -114,8 +128,6 @@ class ApiStack(Stack):
                     "pre_build": {
                         "commands": [
                             "echo Logging in to Amazon ECR...",
-                            "aws --version",    # DEBUG
-                            "ls -R",            # DEBUG
                             "aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI",
                             "COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)",
                             "BUILD_TAG=$(echo $CODEBUILD_BUILD_ID | awk -F\":\" '{print $2}')",

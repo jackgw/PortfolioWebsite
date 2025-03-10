@@ -16,8 +16,8 @@ class CloudFrontStack(Stack):
 
     ## Routing Behaviors
     
-    - /*            =>  Website
-    - /api/v1/*     =>  API
+    - /*            =>  Website S3 Bucket
+    - /api/v1/*     =>  API Load Balancer
     """
 
     def __init__(
