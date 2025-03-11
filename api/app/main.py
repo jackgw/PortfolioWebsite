@@ -1,9 +1,18 @@
 import uvicorn
+import os
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
+from config import API_VERSION, API_PREFIX
 
-app = FastAPI(debug=True)
-router = APIRouter(prefix="/api/v1")
+db_url = os.environ.get("DATABASE_URL")
+
+app = FastAPI(
+    debug=True,
+    docs_url=f"{API_PREFIX}/docs",    # Swagger UI
+    redoc_url=f"{API_PREFIX}/redoc",   # Redoc UI
+    openapi_url=f"{API_PREFIX}/openapi.json"  # OpenAPI schema
+)
+router = APIRouter(prefix=API_PREFIX)
 
 # Configure CORS
 app.add_middleware(
@@ -22,7 +31,7 @@ async def status():
 # Routes
 @router.get("/version")
 async def version():
-    return {"API Version": "v1.0.0"}
+    return {"API Version": API_VERSION}
 
 # Register router
 app.include_router(router)
