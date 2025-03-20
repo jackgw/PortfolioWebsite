@@ -1,0 +1,69 @@
+.headshot-image {
+  position: relative;
+  overflow: clip;
+  border-radius: 0 0 999px 999px;
+  aspect-ratio: 0.75;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom:0;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: var(--p-primary-400);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    transition: background-color 0.5s;
+  }
+
+  &:hover:before {
+    background-color: var(--p-primary-500);
+  }
+
+  & img {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.wave-1 {
+  -webkit-mask-image: url('/assets/wave_1.svg');
+  mask-image: url('/assets/wave_1.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+}
+
+.wave-2 {
+  -webkit-mask-image: url('/assets/wave_2.svg');
+  mask-image: url('/assets/wave_2.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+}
+
+.wave-3 {
+  -webkit-mask-image: url('/assets/wave_3.svg');
+  mask-image: url('/assets/wave_3.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+}
+
+.app-dark {
+  .wave-primary {
+    background: var(--p-primary-500)
+  }
+}

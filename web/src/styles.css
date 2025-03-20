@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+@import 'primeicons/primeicons.css';
+
+:root {
+  --font-family: 'Outfit', serif;
+}
+
+body,
+body .p-component {
+  font-family: var(--font-family);
+}
