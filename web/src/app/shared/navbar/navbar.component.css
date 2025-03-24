@@ -1,0 +1,11 @@
+.logo-img {
+  /* background-color: var(--p-text-color); */
+  -webkit-mask-image: url('/assets/logo.svg');
+  mask-image: url('/assets/logo.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}

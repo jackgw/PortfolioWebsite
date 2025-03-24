@@ -1,0 +1,59 @@
+<p-card [formGroup]="contactForm">
+    <div class="w-full flex flex-col items-center justify-center gap-5">
+        <h2 class="text-[3em]">Let's Collaborate!</h2>
+        <div class="w-full flex flex-row items-center justify-center gap-5">
+            <div class="w-full flex flex-col items-center justify-center gap-5">
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-user"></i>
+                    </p-inputgroup-addon>
+                    <p-floatlabel variant="in">
+                        <input pInputText id="name" formControlName="name"/>
+                        <label for="name">Full Name</label>
+                    </p-floatlabel>
+                </p-inputgroup>
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-phone"></i>
+                    </p-inputgroup-addon>
+                    <p-floatlabel variant="in">
+                        <p-inputmask mask="(999) 999-9999" id="phone" formControlName="phone" />
+                        <label for="phone">Phone Number</label>
+                    </p-floatlabel>
+                </p-inputgroup>
+            </div>
+        
+            <div class="w-full flex flex-col items-center justify-center gap-5">
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-briefcase"></i>
+                    </p-inputgroup-addon>
+                    <p-floatlabel variant="in">
+                        <input pInputText id="company" formControlName="company" />
+                        <label for="company">Company Name</label>
+                    </p-floatlabel>
+                </p-inputgroup>
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-envelope"></i>
+                    </p-inputgroup-addon>
+                    <p-floatlabel variant="in">
+                        <input pInputText id="email" formControlName="email" />
+                        <label for="email">Email Address</label>
+                    </p-floatlabel>
+                </p-inputgroup>
+            </div>
+        </div>
+
+        <p-inputgroup>
+            <p-floatlabel variant="in">
+                <p-select id="category" formControlName="category" [options]="categories" />
+                <label for="category">Subject</label>
+            </p-floatlabel>
+        </p-inputgroup>
+
+        <textarea id="message" rows="5" cols="30" pTextarea formControlName="message" class="w-full" placeholder="Enter message"></textarea>
+
+        <p-button label="Submit" icon="pi pi-check" />
+    </div>
+</p-card>

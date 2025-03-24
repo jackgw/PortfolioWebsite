@@ -1,6 +1,10 @@
-<p-menubar [model]="items">
+<p-menubar [model]="items" [dt]="customStyle == 'filled' ? filled : plain">
+    <ng-template #start>
+        <div class="h-[50px] w-[50px] bg-primary logo-img mr-5 my-1"></div>
+    </ng-template>
     <ng-template #item let-item let-root="root">
         <a pRipple class="flex items-center p-menubar-item-link">
+            <i *ngIf="item.icon" [ngClass]="item.icon"></i>
             <span>{{ item.label }}</span>
             <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
             <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
@@ -8,8 +12,8 @@
     </ng-template>
     <ng-template #end>
         <div class="flex items-center gap-2">
-            <p-button icon="pi pi-home" variant="text" (onClick)="toggleDarkMode()"/>
-            <p-button label="Contact Me" variant="text"/>
+            <p-button icon="pi {{utilities.darkMode ? 'pi-sun' : 'pi-moon'}}" variant="text" (onClick)="utilities.toggleDarkMode()"/>
+            <p-button label="Contact" icon="pi pi-envelope" variant="text" (click)="utilities.scrollToPageElement('/', 'contactForm')"/>
         </div>
     </ng-template>
 </p-menubar>
