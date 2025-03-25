@@ -18,3 +18,18 @@ body .p-component {
  */
 .p-inputgroup .p-inputtext, .p-fluid .p-inputgroup .p-inputtext{ &.p-inputmask{ width: 100%; } }
 .p-inputgroup p-inputmask{ width: 100%; }
+
+/* Custom style edits for PrimeNG components */
+.panelmenu-no-outline {
+  & .p-panelmenu-panel {
+    border-width: 0 !important;
+  }
+
+  & .p-focus .p-panelmenu-item-content {
+    background: transparent !important;
+
+    &:hover {
+      background: var(--p-panelmenu-item-focus-background) !important;
+    }
+  }
+}

@@ -1,59 +1,85 @@
-<p-card [formGroup]="contactForm">
-    <div class="w-full flex flex-col items-center justify-center gap-5">
-        <h2 class="text-[3em]">Let's Collaborate!</h2>
-        <div class="w-full flex flex-row items-center justify-center gap-5">
-            <div class="w-full flex flex-col items-center justify-center gap-5">
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-user"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="in">
-                        <input pInputText id="name" formControlName="name"/>
-                        <label for="name">Full Name</label>
-                    </p-floatlabel>
-                </p-inputgroup>
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-phone"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="in">
-                        <p-inputmask mask="(999) 999-9999" id="phone" formControlName="phone" />
-                        <label for="phone">Phone Number</label>
-                    </p-floatlabel>
-                </p-inputgroup>
+<div class="w-full flex flex-col items-center justify-center gap-5">
+
+    <!-- Title -->
+    <h2 class="text-[3em]">Let's Collaborate!</h2>
+
+    <!-- Form -->
+    <p-card [formGroup]="contactForm" class="w-full">
+        <div class="w-full flex flex-col items-center justify-center gap-5">
+            <div class="w-full flex flex-row items-center justify-center gap-5">
+                <div class="w-full flex flex-col items-center justify-center gap-5">
+                    <!-- Name Field -->
+                    <p-inputgroup>
+                        <p-inputgroup-addon>
+                            <i class="pi pi-user"></i>
+                        </p-inputgroup-addon>
+                        <p-floatlabel variant="in">
+                            <input 
+                                pInputText id="name" 
+                                formControlName="name" 
+                                [ngClass]="[
+                                    contactForm?.get('name')?.dirty ? 'ng-dirty' : '',
+                                    !contactForm?.get('name')?.valid ? 'ng-invalid' : ''
+                                ]"
+                            />
+                            <label for="name">Full Name</label>
+                        </p-floatlabel>
+                    </p-inputgroup>
+
+                    <!-- Phone Field -->
+                    <p-inputgroup>
+                        <p-inputgroup-addon>
+                            <i class="pi pi-phone"></i>
+                        </p-inputgroup-addon>
+                        <p-floatlabel variant="in">
+                            <p-inputmask mask="(999) 999-9999" id="phone" formControlName="phone" />
+                            <label for="phone">Phone Number</label>
+                        </p-floatlabel>
+                    </p-inputgroup>
+                </div>
+            
+                <div class="w-full flex flex-col items-center justify-center gap-5">
+                    <!-- Company Field -->
+                    <p-inputgroup>
+                        <p-inputgroup-addon>
+                            <i class="pi pi-briefcase"></i>
+                        </p-inputgroup-addon>
+                        <p-floatlabel variant="in">
+                            <input pInputText id="company" formControlName="company" />
+                            <label for="company">Company Name</label>
+                        </p-floatlabel>
+                    </p-inputgroup>
+
+                    <!-- Email Field -->
+                    <p-inputgroup>
+                        <p-inputgroup-addon>
+                            <i class="pi pi-envelope"></i>
+                        </p-inputgroup-addon>
+                        <p-floatlabel variant="in">
+                            <input pInputText id="email" formControlName="email" />
+                            <label for="email">Email Address</label>
+                        </p-floatlabel>
+                    </p-inputgroup>
+                </div>
             </div>
-        
-            <div class="w-full flex flex-col items-center justify-center gap-5">
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-briefcase"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="in">
-                        <input pInputText id="company" formControlName="company" />
-                        <label for="company">Company Name</label>
-                    </p-floatlabel>
-                </p-inputgroup>
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-envelope"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="in">
-                        <input pInputText id="email" formControlName="email" />
-                        <label for="email">Email Address</label>
-                    </p-floatlabel>
-                </p-inputgroup>
-            </div>
+
+            <!-- Subject Field -->
+            <p-inputgroup>
+                <p-floatlabel variant="in">
+                    <p-select id="subject" formControlName="subject" [options]="categories" />
+                    <label for="subject">Subject</label>
+                </p-floatlabel>
+            </p-inputgroup>
+
+            <!-- Message Field -->
+            <textarea id="message" rows="5" cols="30" pTextarea formControlName="message" class="w-full" placeholder="Enter message"></textarea>
         </div>
+    </p-card>
 
-        <p-inputgroup>
-            <p-floatlabel variant="in">
-                <p-select id="category" formControlName="category" [options]="categories" />
-                <label for="category">Subject</label>
-            </p-floatlabel>
-        </p-inputgroup>
+    <!-- Error Message -->
+    <p-message *ngIf="formError && !contactForm.valid" severity="error">{{formError}}</p-message>
 
-        <textarea id="message" rows="5" cols="30" pTextarea formControlName="message" class="w-full" placeholder="Enter message"></textarea>
+    <!-- Submit Button -->
+    <p-button label="Submit" icon="pi pi-check" (click)="submitForm()" />
 
-        <p-button label="Submit" icon="pi pi-check" />
-    </div>
-</p-card>
+</div>

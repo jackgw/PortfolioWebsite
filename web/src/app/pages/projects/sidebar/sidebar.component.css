@@ -1,0 +1,19 @@
+.sidebar-link {
+  &::before {
+    content: '';
+    width: 1px;
+    margin-left: 1px;
+    background-color: var(--p-text-color);
+  }
+
+  &.active-link {
+    color: var(--p-primary-500);
+
+    &::before {
+      content: '';
+      width: 2px;
+      margin-left: 0px;
+      background-color: var(--p-primary-500) !important;
+    }
+  }
+}

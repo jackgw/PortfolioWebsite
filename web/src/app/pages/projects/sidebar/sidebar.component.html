@@ -1,0 +1,35 @@
+<div class="card flex flex-col justify-center panelmenu-no-outline">
+    <h1 class="text-[2em] ml-4 mb-3">My Work</h1>
+    <p-panelmenu [model]="items" styleClass="w-full md:w-80 gap-0" [multiple]="true">
+        <ng-template #item let-item class="test-class">
+            <ng-container *ngIf="item.route; else urlRef">
+                <a 
+                    [routerLink]="item.route"
+                    [queryParams]="item.params"
+                    [routerLinkActive]="'active-link'" 
+                    class="flex align-items-center cursor-pointer text-color px-3 sidebar-link"
+                >
+                    <span [class]="item.icon"></span>
+                    <span class="ml-2 py-2">{{ item.label }}</span>
+                </a>
+            </ng-container>
+            <ng-template #urlRef>
+                <a 
+                    *ngIf="item.url; else noLink" 
+                    [href]="item.url" 
+                    class="flex align-items-center cursor-pointer text-color px-3 py-2"
+                >
+                    <span [class]="item.icon"></span>
+                    <span class="ml-2">{{ item.label }}</span>
+                </a>
+                <ng-template #noLink>
+                    <span class="flex items-center cursor-pointer text-color px-4 py-2 mb-2">
+                        <span [class]="item.icon"></span>
+                        <span class="ml-2">{{ item.label }}</span>
+                        <i *ngIf="item.items" class="pi pi-angle-down text-primary ml-auto"></i>
+                    </span>
+                </ng-template>
+            </ng-template>
+        </ng-template>
+    </p-panelmenu>
+</div>
