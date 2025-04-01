@@ -1,1 +1,157 @@
-<p>social-valid works!</p>
+<div class="flex flex-col gap-5">
+    <div class="flex flex-row items-center justify-between w-full">
+        <h2 class="text-[2em]"><a class="text-primary">Social Valid</a> - Lead Technology Engineer</h2>
+        <p>December 2021 - March 2025</p>
+    </div>
+    <div class="card flex flex-wrap gap-2 w-full">
+        <p-tag value="MongoDB"/>
+        <p-tag value="Python"/>
+        <p-tag value="Angular"/>
+        <p-tag value="React"/>
+        <p-tag value="Typescript"/>
+        <p-tag value="HTML"/>
+        <p-tag value="CSS"/>
+        <p-tag severity="info" value="AWS Lambda"/>
+        <p-tag severity="info" value="Amazon API Gateway"/>
+        <p-tag severity="info" value="Amazon S3"/>
+        <p-tag severity="info" value="AWS Cloudfront"/>
+        <p-tag severity="info" value="AWS Code Pipeline"/>
+        <p-tag severity="info" value="Amazon EventBridge"/>
+        <p-tag severity="info" value="Amazon SQS"/>
+        <p-tag severity="info" value="Amazon SES"/>
+        <p-tag severity="info" value="AWS Cognito"/>
+        <p-tag severity="warn" value="OAuth Providers"/>
+        <p-tag severity="warn" value="Stripe (Payments)"/>
+        <p-tag severity="warn" value="Twilio (Phone Notifications)"/>
+        <p-tag severity="warn" value="Persona (Identity Verification)"/>
+    </div>
+
+    <p-message icon="pi pi-exclamation-circle" severity="warn">As of March 2025, Social Valid LLC has been shut down due to changing markets and business/financial needs. This page documents what the Social Valid application was, and showcases some of my contributions and achievements while working there.</p-message>
+
+    <!-- Overview -->
+    <h3 id="overview" class="text-[1.5em] text-primary section">Overview</h3>
+    <p>Social Valid was a web application built with the goal of providing users a safe place to house all of their socials and web links, and prove that they are legitimate through multiple verification methods. Offering verification badges, security, theme customization, and a variety of page types to suit every user's needs, Social Valid hopes to become the home of trusted information on the web.</p>
+
+    <!-- Responsibilities -->
+    <h3 id="roles" class="text-[1.5em] text-primary section">Roles and Responsibilities</h3>
+    <ul>
+        <li>Partnered directly with the CEO to establish key strategic goals, technical scoping, success roadmaps, and delivery timelines.</li>
+        <li>Implemented numerous features and optimizations in both the front-end and back-end.</li>
+        <li>Created detailed project proposals and UI mock-ups for upcoming features.</li>
+        <li>Collaborated with QA team to ensure high test coverage and timely resolution of tracked issues.</li>
+        <li>Responsible for creating, budgeting, and maintaining all AWS infrastructure across both production and testing environments.</li>
+        <li>Responsible for creating and assigning tasks to all team members for each Agile sprint cycle.</li>
+        <li>Responsible for training, mentoring, and conducting peer review with team members.</li>
+        <li>Responsible for maintaining versioning consistency and executing the initial product launch, in addition to dozens of subsequent feature roll-outs.</li>
+    </ul>
+
+    <!-- Contributions -->
+    <h3 id="achievements" class="text-[1.5em] text-primary section">Notable Contributions and Achievements</h3>
+    <ul>
+        <li>Optimized AWS infrastructure for existing projects to reduce hosting cost by 87%.</li>
+        <li>Integrated identity verification and social verification through multiple external APIs and OAuth providers.</li>
+        <li>Optimized database structures, reducing lookup times by severalfold and improving query performance.</li>
+        <li>Designed and implemented a flexible theming and layout customization system for Social Valid user pages.</li>
+        <li>Implemented a live payment system with subscription tracking, cancellation, and refunds.</li>
+        <li>Designed and implemented backend solutions for multi-level user permissions management.</li>
+        <li>Developed a standalone admin dashboard for comprehensive database management and oversight.</li>
+        <li>Developed team best practices for bug testing and process improvement.</li>
+    </ul>
+    <p-message icon="pi pi-eye" severity="success">All of the features and designs documented in the following sections were designed and implemented either entirely or in part my myself, and provide a showcase of my work at Social Valid.</p-message>
+
+    <!-- Homepage -->
+    <h3 id="homepage" class="text-[1.5em] text-primary section">Showcase: Homepage</h3>
+    <p class="max-w-[900px]">The Social Valid homepage was implemented as a React app separate from the main application. It includes four primary pages: a homepage, a pricing page, and two inquiry forms for businesses and agencies.</p>
+    <video controls src="assets/projects/social_valid/website.mp4" class="w-full max-w-[900px]">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- User Pages -->
+    <h3 id="pages" class="text-[1.5em] text-primary section">Showcase: User Page Types</h3>
+    <p>Social Valid provides three main page types to fulfill the needs of different types of users.</p>
+    <p-galleria [value]="pages_showcase_gallery" [showThumbnailNavigators]="false" [containerStyle]="{'width': '100%', 'max-width': '900px', 'border-width': '0px'}" [numVisible]="5">
+        <ng-template #item let-item>
+            <div class="w-full flex flex-col gap-5">
+                <video width="100%" controls [src]="item.src">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="flex flex-row gap-5 mb-5">
+                    <div class="bg-primary w-[3px]"></div>
+                    <div>
+                        <p class="text-[1.3em] mb-2">{{item.name}}</p>
+                        <p>{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #thumbnail let-item>
+            <div class="flex flex-row justify-center">
+                <img [src]="item.thumb" class="w-[80%]"/>
+            </div>
+        </ng-template>
+    </p-galleria>
+
+    <!-- Theming -->
+    <h3 id="theming" class="text-[1.5em] text-primary section">Showcase: Theming</h3>
+    <p>Social Valid provides three main page types to fulfill the needs of different types of users.</p>
+    <p-galleria [value]="themes_showcase_gallery" [showThumbnailNavigators]="false" [containerStyle]="{'width': '100%', 'max-width': '900px', 'border-width': '0px'}" [numVisible]="5">
+        <ng-template #item let-item>
+            <div class="w-full flex flex-col gap-5">
+                <video width="100%" controls [src]="item.src">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="flex flex-row gap-5 mb-5">
+                    <div class="bg-primary w-[3px]"></div>
+                    <div>
+                        <p class="text-[1.3em] mb-2">{{item.name}}</p>
+                        <p>{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #thumbnail let-item>
+            <div class="flex flex-row justify-center">
+                <img [src]="item.thumb" class="w-[80%]"/>
+            </div>
+        </ng-template>
+    </p-galleria>
+
+    <!-- Agencies -->
+    <h3 id="agencies" class="text-[1.5em] text-primary section">Showcase: Agency Accounts</h3>
+    <p>An additional to individual accounts, Social Valid also supported </p>
+    <p-galleria [value]="agencies_showcase_gallery" [showThumbnailNavigators]="false" [containerStyle]="{'width': '100%', 'max-width': '900px', 'border-width': '0px'}" [numVisible]="5">
+        <ng-template #item let-item>
+            <div class="w-full flex flex-col gap-5">
+                <video width="100%" controls [src]="item.src">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="flex flex-row gap-5 mb-5">
+                    <div class="bg-primary w-[3px]"></div>
+                    <div>
+                        <p class="text-[1.3em] mb-2">{{item.name}}</p>
+                        <p>{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #thumbnail let-item>
+            <div class="flex flex-row justify-center">
+                <img [src]="item.thumb" class="w-[80%]"/>
+            </div>
+        </ng-template>
+    </p-galleria>
+
+    <!-- Ambassadors -->
+    <h3 id="ambassadors" class="text-[1.5em] text-primary section">Showcase: Ambassador Program</h3>
+    <p class="max-w-[900px]">Within Social Valid we implemented an in-depth referral program for users to get credit for referring new accounts. This included both multiple methods of generating and sharing referral links as well as a dashboard to view clicks, signups, and paid upgrade of referred users.</p>
+    <video controls src="assets/projects/social_valid/ambassador_reports.mp4" class="w-full max-w-[900px]">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Back Office -->
+    <h3 id="backoffice" class="text-[1.5em] text-primary section">Showcase: Admin Dashboard</h3>
+    <p class="max-w-[900px]">In addition to the user-facing features of Social Valid, I also implemented a private dashboard site for admins to view and edit all application data.</p>
+    <video controls src="assets/projects/social_valid/back_office.mp4" class="w-full max-w-[900px]">
+        Your browser does not support the video tag.
+    </video>
+</div>

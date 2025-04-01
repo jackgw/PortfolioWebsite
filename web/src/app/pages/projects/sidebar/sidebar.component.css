@@ -3,7 +3,7 @@
     content: '';
     width: 1px;
     margin-left: 1px;
-    background-color: var(--p-text-color);
+    background-color: var(--p-text-muted-color);
   }
 
   &.active-link {

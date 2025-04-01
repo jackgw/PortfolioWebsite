@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 	providedIn: 'root'
 })
 export class UtilitiesService {
-	darkMode = false;
+	/* App Flags */
+	darkMode = false;								// Dark mode
+	skipFragmentScroll = false;			// Whether to skip the default router fragment scrolling behavior.
+	blockNavigateOnScroll = false;	// Used by project info pages to prevent unintended navigation with programatic scrolls.
 
 	constructor(
 		private router: Router
@@ -59,8 +62,29 @@ export class UtilitiesService {
 		setTimeout(() => {
 			const element = document.getElementById(elementId);
 			if (element) {
+				// Block scroll navigation while programatic scroll is happening.
+				this.blockNavigateOnScroll = true;
+				setTimeout(() => {this.blockNavigateOnScroll = false}, 500)
+
 				element.scrollIntoView({behavior: "smooth"})
 			}
 		}, 100)
+	}
+
+	scrollToRouteFragment(url: string) {
+		// Get fragment from URL
+		const fragment = url.split('#')[1];
+
+		// Smoothly scroll to fragment
+		if (fragment) {
+			const element = document.getElementById(fragment);
+			if (element) {
+				// Block scroll navigation while programatic scroll is happening.
+				this.blockNavigateOnScroll = true;
+				setTimeout(() => {this.blockNavigateOnScroll = false}, 500)
+
+				element.scrollIntoView({ behavior: 'smooth' });
+			}
+		}
 	}
 }

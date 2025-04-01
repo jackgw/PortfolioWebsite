@@ -6,7 +6,9 @@
                 <a 
                     [routerLink]="item.route"
                     [queryParams]="item.params"
+                    [fragment]="item.fragment"
                     [routerLinkActive]="'active-link'" 
+                    [routerLinkActiveOptions]="linkActiveOptions"
                     class="flex align-items-center cursor-pointer text-color px-3 sidebar-link"
                 >
                     <span [class]="item.icon"></span>
@@ -21,11 +23,13 @@
                 >
                     <span [class]="item.icon"></span>
                     <span class="ml-2">{{ item.label }}</span>
+                    <p-tag value="Primary" />
                 </a>
                 <ng-template #noLink>
                     <span class="flex items-center cursor-pointer text-color px-4 py-2 mb-2">
                         <span [class]="item.icon"></span>
                         <span class="ml-2">{{ item.label }}</span>
+                        <p-tag [value]="item.category" class="ml-2" [severity]="getTagSeverity(item.category)" />
                         <i *ngIf="item.items" class="pi pi-angle-down text-primary ml-auto"></i>
                     </span>
                 </ng-template>

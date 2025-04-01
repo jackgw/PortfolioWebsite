@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { PanelMenu } from 'primeng/panelmenu';
-import { Router, RouterModule } from '@angular/router';
+import { IsActiveMatchOptions, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TagModule } from 'primeng/tag';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.css',
     standalone: true,
-    imports: [PanelMenu, RouterModule, CommonModule],
+    imports: [PanelMenu, RouterModule, CommonModule, TagModule],
     providers: [MessageService]
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
     items: MenuItem[] = [];
 
     constructor(private router: Router) {}
@@ -26,66 +27,149 @@ export class SidebarComponent {
         }
     };
 
+    public linkActiveOptions: IsActiveMatchOptions = {
+        matrixParams: 'exact',
+        queryParams: 'exact',
+        paths: 'exact',
+        fragment: 'exact',
+      };
+
     ngOnInit() {
         this.items = [
             {
-                label: 'Professional',
+                label: 'Social Valid',
                 expanded: true,
-                // icon: 'pi pi-briefcase',
+                category: 'Professional',
                 items: [
                     {
-                        label: 'Social Valid',
-                        route: '/projects/social-valid'
+                        label: 'Overview',
+                        route: '/projects/social-valid',
+                        fragment: 'overview'
                     },
                     {
-                        label: 'Power Fusion Media',
-                        route: '/projects/pfm'
-                    }
+                        label: 'Responsibilities',
+                        route: '/projects/social-valid',
+                        fragment: 'roles'
+                    },
+                    {
+                        label: 'Achievements',
+                        route: '/projects/social-valid',
+                        fragment: 'achievements'
+                    },
+                    {
+                        label: 'Showcase: Homepage',
+                        route: '/projects/social-valid',
+                        fragment: 'homepage'
+                    },
+                    {
+                        label: 'Showcase: User Page Types',
+                        route: '/projects/social-valid',
+                        fragment: 'pages'
+                    },
+                    {
+                        label: 'Showcase: Theming',
+                        route: '/projects/social-valid',
+                        fragment: 'theming'
+                    },
+                    {
+                        label: 'Showcase: Agencies',
+                        route: '/projects/social-valid',
+                        fragment: 'agencies'
+                    },
+                    {
+                        label: 'Showcase: Ambassador Program',
+                        route: '/projects/social-valid',
+                        fragment: 'ambassadors'
+                    },
+                    {
+                        label: 'Showcase: Admin Dashboard',
+                        route: '/projects/social-valid',
+                        fragment: 'backoffice'
+                    },
                 ]
             },
             {
-                label: 'Projects',
+                label: 'Power Fusion Media',
                 expanded: true,
-                // icon: 'pi pi-palette',
+                category: 'Professional',
                 items: [
                     {
-                        label: 'SCALE Pathways',
-                        route: '/projects/pathways'
+                        label: 'Overview',
+                        route: '/projects/pfm'
+                    },
+                ]
+            },
+            {
+                label: 'SCALE Pathways',
+                expanded: true,
+                category: 'Project',
+                items: [
+                    {
+                        label: 'Overview',
+                        route: '/projects/pathways',
+                        fragment: 'overview'
                     },
                     {
-                        label: 'General API Framework',
-                        route: '/projects/generalized-api'
+                        label: 'Responsibilities',
+                        route: '/projects/pathways',
+                        fragment: 'roles'
+                    },
+                    {
+                        label: 'Demo',
+                        route: '/projects/pathways',
+                        fragment: 'demo'
+                    },
+                ]
+            },
+            {
+                label: 'Generalized SQL API',
+                expanded: true,
+                category: 'Project',
+                items: [
+                    {
+                        label: 'Overview',
+                        route: '/projects/generalized-api',
                     },
                 ]
             },
             {
                 label: 'Portfolio Website',
                 expanded: true,
-                // icon: 'pi pi-palette',
+                category: 'Project',
                 items: [
                     {
                         label: 'Overview',
                         route: '/projects/portfolio',
-                        params: {section: 'overview'}
+                        fragment: 'overview'
                     },
                     {
                         label: 'Deployment',
                         route: '/projects/portfolio',
-                        params: {section: 'deployment'}
+                        fragment: 'deployment'
                     },
                     {
                         label: 'Frontend',
                         route: '/projects/portfolio',
-                        params: {section: 'frontend'}
+                        fragment: 'portfolio'
                     },
                     {
                         label: 'API',
                         route: '/projects/portfolio',
-                        params: {section: 'api'}
+                        fragment: 'api'
                     },
                 ]
             },
         ];
     }
 
+    getTagSeverity(category: string) {
+        switch (category) {
+            case 'Professional':
+                return 'info';
+            case 'Volunteer':
+                return 'warn';
+            default:
+                return undefined;
+        }
+    }
 }
