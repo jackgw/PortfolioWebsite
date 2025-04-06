@@ -1,12 +1,12 @@
 <div class="w-full flex flex-col overflow-y-scroll">
     <!-- Dynamic Navbar (shows on scroll) -->
-    <app-navbar appScrollVisibility [scrollThreshold]="400" [customStyle]="'filled'" class="w-full fixed top-0 z-99"></app-navbar>
+    <app-navbar class="navbar {{scrolled ? 'scrolled' : '' }}"></app-navbar>
 
     <!-- Landing Page -->
     <div class="w-full h-[100dvh] p-5">
         <div class="w-[100%] md:w-[70%] mx-auto h-full">
             <!-- Static Navbar -->
-            <app-navbar class="w-full"></app-navbar>
+            <!-- <app-navbar class="w-full"></app-navbar> -->
 
             <!-- Landing Page Content -->
             <div class="w-full h-full flex flex-col md:flex-row items-start justify-between">

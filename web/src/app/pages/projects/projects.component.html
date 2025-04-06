@@ -1,14 +1,14 @@
 <div class="flex flex-col items-start justify-start w-full h-[100dvh]">
     <app-navbar class="w-full"></app-navbar>
 
-    <div class="flex flex-row gap-[20px] p-[20px] flex-grow overflow-hidden">
+    <div class="flex flex-row gap-[20px] p-[20px] flex-grow overflow-hidden w-full">
         <!-- Sidebar -->
         <p-card styleClass="h-full max-h-full overflow-y-scroll">
             <app-sidebar ></app-sidebar>
         </p-card>
     
         <!-- Page Contents -->
-        <p-card styleClass="h-full max-h-full overflow-y-scroll">
+        <p-card styleClass="h-full max-h-full overflow-y-scroll w-full" class="w-full">
             <router-outlet></router-outlet>
         </p-card>
     </div>

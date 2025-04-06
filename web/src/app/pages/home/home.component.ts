@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ScrollVisibilityDirective } from 'src/app/directives/scroll-visibility.directive';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
@@ -22,5 +22,12 @@ import { UtilitiesService } from 'src/app/services/utilities.service';
   standalone: true
 })
 export class HomeComponent {
+  scrolled = false;
+
   constructor(public utilities: UtilitiesService) {}
+
+  @HostListener("window:scroll", [])
+    onWindowScroll() {
+        this.scrolled = window.scrollY > 0;
+    }
 }

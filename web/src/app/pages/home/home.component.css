@@ -1,3 +1,28 @@
+.navbar {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  background-color: transparent;
+  backdrop-filter: none;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: transparent;
+  transition: width 0.5s, top 0.5s, background-color 0.5s, border-color 0.5s;
+
+  &.scrolled {
+    width: 70%;
+    top: 20px;
+    background-color: color-mix(in srgb, var(--p-card-background) 75%, transparent);
+    backdrop-filter: blur(3px);
+    border-color: color-mix(in srgb, var(--p-primary-500) 75%, transparent);
+  }
+}
+
 .headshot-image {
   position: relative;
   overflow: clip;
@@ -93,10 +118,4 @@
   mask-repeat: no-repeat;
   -webkit-mask-position: top;
   mask-position: top;
-}
-
-.app-dark {
-  .wave-primary {
-    background: var(--p-primary-500)
-  }
 }
