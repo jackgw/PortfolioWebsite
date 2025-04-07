@@ -47,33 +47,39 @@
                 pAnimateOnScroll
                 enterClass="animate-enter fade-in-10 slide-in-from-l-20 animate-duration-1000"
                 leaveClass="animate-leave fade-out-0"
-                class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
-                (click)="utilities.navigate(true, '/projects/pathways')"
+                class="flex flex-col border border-surface shadow-lg justify-between items-center max-w-80 rounded-2xl gap-5 overflow-clip bg-surface-100 [html.app-dark_&]:bg-surface-900"
             >
-                
-                <span class="text-2xl font-medium text-primary-contrast">SCALE Pathways</span>
-                <span class="text-primary-contrast text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                <img src="assets/projects/pathways/pathways_thumbnail.png" />
+                <div class="px-5 flex flex-col items-center h-full gap-3">
+                    <span class="text-2xl font-medium text-center">SCALE Pathways</span>
+                    <span class="text-center">A web app for current and prospective college students to create and track course schedules.</span>
+                </div>
+                <p-button (click)="utilities.navigate(true, '/projects/pathways')" label="Learn More" class="mb-5"/>
             </div>
 
             <div 
                 pAnimateOnScroll 
                 enterClass="animate-enter fade-in-10 slide-in-from-b-20 animate-duration-1000" 
-                class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
-                (click)="utilities.navigate(true, '/projects/social-valid')"
+                class="flex flex-col border border-surface shadow-lg justify-between items-center max-w-80 rounded-2xl gap-5 overflow-clip bg-surface-100 [html.app-dark_&]:bg-surface-900"
             >
-                
-                <span class="text-2xl font-medium text-primary-contrast">Social Valid</span>
-                <span class="text-primary-contrast text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                <img src="assets/projects/social_valid/dashboard.png" />
+                <div class="px-5 flex flex-col items-center h-full gap-3">
+                    <span class="text-2xl font-medium text-center">Social Valid</span>
+                    <span class="text-center">A complex web app allowing users to create multiple types of homepages according to their needs, and verify their online presense.</span>
+                </div>
+                <p-button (click)="utilities.navigate(true, '/projects/social-valid')" label="Learn More" class="mb-5"/>
             </div>
             <div 
                 pAnimateOnScroll 
                 enterClass="animate-enter fade-in-10 slide-in-from-r-20 animate-duration-1000" 
-                class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
-                (click)="utilities.navigate(true, '/projects/generalized-api')"
+                class="flex flex-col border border-surface shadow-lg justify-between items-center max-w-80 rounded-2xl gap-5 overflow-clip bg-surface-100 [html.app-dark_&]:bg-surface-900"
             >
-                
-                <span class="text-2xl font-medium text-primary-contrast">Generalized API Framework</span>
-                <span class="text-primary-contrast text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                <img src="assets/projects/generalized_api/thumb.png" />
+                <div class="px-5 flex flex-col items-center h-full gap-3">
+                    <span class="text-2xl font-medium text-center">Generalized API</span>
+                    <span class="text-center">A sample API framework for easily implementing CRUD routes for basic operations on a SQL database.</span>
+                </div>
+                <p-button (click)="utilities.navigate(true, '/projects/generalized-api')" label="Learn More" class="mb-5"/>
             </div>
         </div>
     </div>

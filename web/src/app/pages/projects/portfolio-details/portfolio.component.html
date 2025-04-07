@@ -1,1 +1,60 @@
-<p>portfolio works!</p>
+<div class="flex flex-col gap-5">
+    <div class="flex flex-row items-center justify-between w-full">
+        <h2 class="text-[2em]"><a class="text-primary">Portfolio Website</a></h2>
+        <p>Last Updated Apr. 2025</p>
+    </div>
+    <div class="card flex flex-wrap gap-2 w-full">
+        <p-tag value="Angular"/>
+        <p-tag value="Typescript"/>
+        <p-tag value="CSS"/>
+        <p-tag value="HTML"/>
+        <p-tag value="Ptyhon"/>
+        <p-tag value="FastAPI"/>
+        <p-tag value="AWS CDK"/>
+        <p-tag value="Docker"/>
+        <p-tag severity="info" value="Amazon ECR/ECS/Fargate"/>
+        <p-tag severity="info" value="Amazon S3"/>
+        <p-tag severity="info" value="AWS Cloudfront"/>
+        <p-tag severity="info" value="AWS Code Pipeline"/>
+        <p-tag severity="info" value="Amazon SES"/>
+    </div>
+
+    <!-- Overview -->
+    <h3 id="overview" class="text-[1.5em] text-primary section">Overview</h3>
+    <p>This website (<i>the one you're looking at right now</i>) was created to showcase my work history and personal projects, as well as provide a direct example of visual style and implementation skill in a publicly accessible repository. As such, all of the source code for this website including frontend, backend, and deployment, can be found on my <a href="https://github.com/jackgw/PortfolioWebsite" class="text-primary" target="_blank">GitHub</a>. Check the README for additional information on how to start the application locally or initiate deployment (with your own AWS credentials of course).</p>
+
+    <!-- Frontend -->
+    <h3 id="frontend" class="text-[1.5em] text-primary section">Frontend Implementation</h3>
+    <p>The frontend for this web app was implemented using Angular as its core framework. It utilizes Client Side rendering so that it can be built into static files for easier deployment.</p>
+    <p>The source code can be viewed <a href="https://github.com/jackgw/PortfolioWebsite/tree/main/web" class="text-primary" target="_blank">here</a> in the <b>web</b> directory of the GitHub repository.</p>
+
+    <!-- API -->
+    <h3 id="api" class="text-[1.5em] text-primary section">Backend Implementation</h3>
+    <p>This web app includes a basic REST API for handling any operations that cannot (or should not) be completed by the client on the frontend. Currently that just includes one operation: contact email submission.</p>
+    <p>While email submission could be accomplished by other means rather than implementing a custom API, I chose to do so both to demonstrate my full stack knowledge and to provide a base structure that I can resuse and build upon for future projects that may require more complex backend functionality.</p>
+    <p>The API is written in <b>Python</b> and uses <a class="text-primary" href="https://fastapi.tiangolo.com/">FastAPI</a> as the underlying framework. The API also includes auto-generated documentation that can be accessed at <a [href]="swaggerLink" class="text-primary" target="_blank">{{swaggerLink}}</a> or <a [href]="swaggerLink" class="text-primary" target="_blank">{{swaggerLink}}</a>. The API is built using docker to allow for containerized deployment and a consistent environment between development and production.</p>
+    <p>The source code can be viewed <a href="https://github.com/jackgw/PortfolioWebsite/tree/main/api" class="text-primary" target="_blank">here</a> in the <b>api</b> directory of the GitHub repository.</p>
+
+    <!-- Deployment -->
+    <h3 id="deployment" class="text-[1.5em] text-primary section">Deployment</h3>
+    <p>This web application leverages the AWS CDK to implement infrastructure-as-code. The deployment architecture consists of 3 distinct stacks:</p>
+    <h4 class="text-[1.2em]">Frontend Deployment Stack</h4>
+    <ul>
+        <li>A <b>Simple Storage Service (S3)</b> bucket to store the static website files.</li>
+        <li>A <b>CodePipeline</b> CI/CD pipeline to automatically rebuild and deploy the Angular app when changes are detected on the GitHub repository.</li>
+    </ul>
+    <h4 class="text-[1.2em]">Backend Deployment Stack</h4>
+    <ul>
+        <li>An <b>Elastic Container Registry (ECR)</b> to store built docker images of the API.</li>
+        <li>An <b>Elastic Container Service (ECS)</b> using <b>Fargate Spot</b> to manage the docker images and provide load balancing.</li>
+        <li>A <b>Virtual Private Cloud (VPC)</b> to isolate the backend within an internal network.</li>
+        <li>A <b>CodePipeline</b> CI/CD pipeline to automatically rebuild and deploy the docker containers when changes are detected on the GitHub repository.</li>
+    </ul>
+    <h4 class="text-[1.2em]">Cloudfront Deployment Stack</h4>
+    <ul>
+        <li>A <b>Cloudfront</b> distribution linking to both the frontend S3 bucket and backend ECS load balancer as origins.</li>
+        <li>A domain certificate stored in the <b>AWS Certificate Manager</b> to assign a custom domain for cloudfront.</li>
+        <li>All requests on the <b>/*</b> path get handled by the website. Request on the <b>/api/v1/*</b> get handled by the API.</li>
+    </ul>
+    <p>The CDK code for all of the infrastructure can be found <a href="https://github.com/jackgw/PortfolioWebsite/tree/main/cdk" class="text-primary" target="_blank">here</a> in the <b>cdk</b> directory of the GitHub repository.</p>
+</div>

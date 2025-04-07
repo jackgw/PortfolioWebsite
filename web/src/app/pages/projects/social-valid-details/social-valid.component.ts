@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Message } from 'primeng/message';
 import { Tag } from 'primeng/tag';
 import { GalleriaModule } from 'primeng/galleria';

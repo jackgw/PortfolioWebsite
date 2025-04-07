@@ -115,6 +115,11 @@ export class SidebarComponent implements OnInit {
                         fragment: 'roles'
                     },
                     {
+                        label: 'Contributions',
+                        route: '/projects/pathways',
+                        fragment: 'contributions'
+                    },
+                    {
                         label: 'Demo',
                         route: '/projects/pathways',
                         fragment: 'demo'
@@ -143,19 +148,19 @@ export class SidebarComponent implements OnInit {
                         fragment: 'overview'
                     },
                     {
+                        label: 'Frontend',
+                        route: '/projects/portfolio',
+                        fragment: 'frontend'
+                    },
+                    {
+                        label: 'Backend',
+                        route: '/projects/portfolio',
+                        fragment: 'api'
+                    },
+                    {
                         label: 'Deployment',
                         route: '/projects/portfolio',
                         fragment: 'deployment'
-                    },
-                    {
-                        label: 'Frontend',
-                        route: '/projects/portfolio',
-                        fragment: 'portfolio'
-                    },
-                    {
-                        label: 'API',
-                        route: '/projects/portfolio',
-                        fragment: 'api'
                     },
                 ]
             },
