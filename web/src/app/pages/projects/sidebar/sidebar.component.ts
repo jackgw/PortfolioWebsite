@@ -88,17 +88,17 @@ export class SidebarComponent implements OnInit {
                     },
                 ]
             },
-            {
-                label: 'Power Fusion Media',
-                expanded: true,
-                category: 'Professional',
-                items: [
-                    {
-                        label: 'Overview',
-                        route: '/projects/pfm'
-                    },
-                ]
-            },
+            // {
+            //     label: 'Power Fusion Media',
+            //     expanded: true,
+            //     category: 'Professional',
+            //     items: [
+            //         {
+            //             label: 'Overview',
+            //             route: '/projects/pfm'
+            //         },
+            //     ]
+            // },
             {
                 label: 'SCALE Pathways',
                 expanded: true,
@@ -134,6 +134,12 @@ export class SidebarComponent implements OnInit {
                     {
                         label: 'Overview',
                         route: '/projects/generalized-api',
+                        fragment: 'overview'
+                    },
+                    {
+                        label: 'Highlights',
+                        route: '/projects/generalized-api',
+                        fragment: 'highlights'
                     },
                 ]
             },

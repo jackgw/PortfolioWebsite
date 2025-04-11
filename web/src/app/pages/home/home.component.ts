@@ -6,6 +6,7 @@ import { AnimateOnScroll } from 'primeng/animateonscroll';
 import { ButtonModule } from 'primeng/button';
 import { ContactComponent } from './contact/contact.component';
 import { UtilitiesService } from 'src/app/services/utilities.service';
+import { ImageModule } from 'primeng/image';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import { UtilitiesService } from 'src/app/services/utilities.service';
     ScrollVisibilityDirective, 
     AnimateOnScroll, 
     ButtonModule,
-    ContactComponent
+    ContactComponent,
+    ImageModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

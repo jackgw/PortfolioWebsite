@@ -5,8 +5,8 @@
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: right;
-  mask-position: right;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
 }
 
 .wave-f-2 {
@@ -16,8 +16,8 @@
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: right;
-  mask-position: right;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
 }
 
 .logo-img {

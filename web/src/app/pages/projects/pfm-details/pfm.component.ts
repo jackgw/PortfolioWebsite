@@ -7,7 +7,8 @@ import { Tag } from 'primeng/tag';
   selector: 'app-pfm',
   imports: [Message, CommonModule, Tag],
   templateUrl: './pfm.component.html',
-  styleUrl: './pfm.component.css'
+  styleUrl: './pfm.component.css',
+  standalone: true
 })
 export class PfmDetailsComponent {
 

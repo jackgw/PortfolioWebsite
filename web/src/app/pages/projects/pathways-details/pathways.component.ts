@@ -9,7 +9,8 @@ import { UtilitiesService } from 'src/app/services/utilities.service';
   selector: 'app-pathways',
   imports: [Message, CommonModule, Tag],
   templateUrl: './pathways.component.html',
-  styleUrl: './pathways.component.css'
+  styleUrl: './pathways.component.css',
+  standalone: true
 })
 export class PathwaysDetailsComponent implements AfterViewInit {
     private observer!: IntersectionObserver;

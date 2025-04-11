@@ -1,1 +1,31 @@
-<p>generalized-api works!</p>
+<div class="flex flex-col gap-5">
+  <div class="flex flex-row items-center justify-between w-full">
+      <h2 class="text-[2em]"><a class="text-primary">Generalized API Framework</a></h2>
+      <p>Last Updated Mar. 2025</p>
+  </div>
+  <div class="card flex flex-wrap gap-2 w-full">
+      <p-tag value="Ptyhon"/>
+      <p-tag value="Flask"/>
+      <p-tag value="SQL"/>
+      <p-tag value="Swagger Documentation"/>
+      <p-tag value="Docker"/>
+  </div>
+
+  <!-- Overview -->
+  <h3 id="overview" class="text-[1.5em] text-primary section">Overview</h3>
+  <p>This project is a sample API for accessing a SQL database, created with the goal of using principles of generalization and inheritance to implement the base CRUD operations for any type of SQL table. This framework aims to use as much shared functionality as possible to ensure a well-organized codebase and make it as easy as possible to add new routes and database objects.</p>
+  <p>In addition to providing base CRUD operations on SQL objects including filtering and sorting, this framework also implements automatically generated Swagger documentation for each API route, including a title, description, and the response structure.</p>
+  <p>The source code for this project can be found on my <a href="https://github.com/jackgw/GeneralizedSqlApi" class="text-primary" target="_blank">GitHub</a> page. Instructions for running locally are included in the README in the root directory.</p>
+
+  <!-- Highlights -->
+  <h3 id="highlights" class="text-[1.5em] text-primary section">Project Highlights</h3>
+  <ul>
+    <li>Generalized base classes for handling CRUD operations on SQL tables.</li>
+    <li>Expanded base classes for generating routes to handle one-to-many and many-to-many relationships.</li>
+    <li>Generalized flask routing templates to create routes needed for each CRUD and relationship operation.</li>
+    <li>Built-in swagger documentation.</li>
+    <li>API and SQL database containerized with docker.</li>
+  </ul>
+  <p-image src="assets/projects/generalized_api/thumb.png" alt="Image" width="250" [preview]="true"/>
+  
+</div>

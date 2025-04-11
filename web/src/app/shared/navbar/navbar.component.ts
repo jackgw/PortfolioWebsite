@@ -66,10 +66,10 @@ export class NavbarComponent {
                 icon: 'pi pi-home',
                 command: () => { this.router.navigateByUrl('/') }
             },
-            {
-                label: 'About',
-                command: () => { this.router.navigateByUrl('/about') }
-            },
+            // {
+            //     label: 'About',
+            //     command: () => { this.router.navigateByUrl('/about') }
+            // },
             {
                 label: 'Portfolio',
                 items: [
