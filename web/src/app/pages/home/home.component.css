@@ -55,9 +55,9 @@
 .wave-1 {
   -webkit-mask-image: url('/assets/wave_1.svg');
   mask-image: url('/assets/wave_1.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat; 
   mask-repeat: no-repeat;
   -webkit-mask-position: bottom;
   mask-position: bottom;
@@ -66,8 +66,8 @@
 .wave-2 {
   -webkit-mask-image: url('/assets/wave_2.svg');
   mask-image: url('/assets/wave_2.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: bottom;
@@ -77,8 +77,8 @@
 .wave-3 {
   -webkit-mask-image: url('/assets/wave_3.svg');
   mask-image: url('/assets/wave_3.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: bottom;
@@ -88,8 +88,8 @@
 .wave-b-1 {
   -webkit-mask-image: url('/assets/wave_b_1.svg');
   mask-image: url('/assets/wave_b_1.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: top;
@@ -99,8 +99,8 @@
 .wave-b-2 {
   -webkit-mask-image: url('/assets/wave_b_2.svg');
   mask-image: url('/assets/wave_b_2.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: top;
@@ -110,8 +110,8 @@
 .wave-b-3 {
   -webkit-mask-image: url('/assets/wave_b_3.svg');
   mask-image: url('/assets/wave_b_3.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: top;

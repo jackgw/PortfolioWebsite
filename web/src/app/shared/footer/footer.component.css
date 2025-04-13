@@ -1,8 +1,8 @@
 .wave-f-1 {
   -webkit-mask-image: url('/assets/wave_f_1.svg');
   mask-image: url('/assets/wave_f_1.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: bottom;
@@ -12,8 +12,8 @@
 .wave-f-2 {
   -webkit-mask-image: url('/assets/wave_f_2.svg');
   mask-image: url('/assets/wave_f_2.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: bottom;
@@ -24,8 +24,8 @@
   /* background-color: var(--p-text-color); */
   -webkit-mask-image: url('/assets/logo.svg');
   mask-image: url('/assets/logo.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask-size:  contain;
+  mask-size:  contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;

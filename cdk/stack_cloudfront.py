@@ -1,11 +1,16 @@
-from aws_cdk import Stack, CfnOutput
+from aws_cdk import Stack, CfnOutput, RemovalPolicy
 from constructs import Construct
 from stack_api import ApiStack
 from stack_web import WebStack
 import aws_cdk.aws_cloudfront as cloudfront
 import aws_cdk.aws_cloudfront_origins as origins
+import aws_cdk.aws_certificatemanager as acm
+import aws_cdk.aws_s3_deployment as s3_deployment
+import aws_cdk.aws_s3 as s3
 
 API_VERSION = "v1"
+DOMAIN = "jack-wharton.com"
+DOMAIN_CERT_ARN = "arn:aws:acm:us-east-1:688567293248:certificate/0c93c897-a84a-429f-bc50-45b4a20911f9" # CF domain certs must be in us-east-1
 
 class CloudFrontStack(Stack):
     """
@@ -31,6 +36,27 @@ class CloudFrontStack(Stack):
     ) -> None:
         super().__init__(scope, id, **kwargs)
 
+        # Create new bucket for storing static files needed for the API and Website
+        static_bucket = s3.Bucket(
+            self,
+            "StaticBucket",
+        )
+
+        # Copy contents of the assets folder into the bucket
+        # s3_deployment.BucketDeployment(
+        #     self,
+        #     "DeployStaticAssets",
+        #     sources=[s3_deployment.Source.asset("../assets")],
+        #     destination_bucket=static_bucket
+        # )
+
+        # # Get domain certificate
+        certificate = acm.Certificate.from_certificate_arn(
+            self,
+            "CloudFrontCertificate",
+            DOMAIN_CERT_ARN
+        )
+
         # Define the CloudFront distribution
         cloudfront_distribution = cloudfront.Distribution(
             self, 
@@ -47,8 +73,14 @@ class CloudFrontStack(Stack):
                     ),
                     allowed_methods=cloudfront.AllowedMethods.ALLOW_ALL,
                     viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+                ),
+                "/static/*": cloudfront.BehaviorOptions(
+                    origin=origins.S3Origin(static_bucket),
+                    viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
                 )
-            }
+            },
+            domain_names= [DOMAIN],
+            certificate=certificate
         )
 
         # Output the CloudFront URL

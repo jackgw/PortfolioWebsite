@@ -1,4 +1,6 @@
 <div class="w-full flex flex-col items-center justify-center gap-5">
+    <!-- Notifications (hidden) -->
+    <p-toast position="bottom-center"/>
 
     <!-- Title -->
     <h2 class="text-[2em] lg:text-[3em]">Let's Collaborate!</h2>
@@ -80,6 +82,11 @@
     <p-message *ngIf="formError && !contactForm.valid" severity="error">{{formError}}</p-message>
 
     <!-- Submit Button -->
-    <p-button label="Submit" icon="pi pi-check" (click)="submitForm()" />
+    <p-button
+        [label]="submitted ? 'Message Sent' : 'Send Message'"
+        [icon]="submitted ? 'pi pi-check' : 'pi pi-arrow-right'"
+        (click)="submitForm()"
+        [disabled]="submitted"
+    />
 
 </div>

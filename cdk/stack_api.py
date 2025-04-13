@@ -7,6 +7,7 @@ import aws_cdk.aws_codebuild as codebuild
 import aws_cdk.aws_codepipeline as codepipeline
 import aws_cdk.aws_codepipeline_actions as codepipeline_actions
 import aws_cdk.aws_ecr as ecr
+import aws_cdk.aws_secretsmanager as sm
 
 class ApiStack(Stack):
     """
@@ -90,10 +91,25 @@ class ApiStack(Stack):
             assign_public_ip=True
         )
 
-        # Configure health check to correctly determine if the API is active
-        # self.ecs_service.target_group.configure_health_check(
-        #     path="/api/v1/status",  # Update if the API version changes.
-        # )
+        # Retrieve the env variables from AWS secret manager
+        secret = sm.Secret.from_secret_name_v2(self, "ApiSecret", "portfolio_api_env")
+
+        # Inject secret ENV vars into ECS task definition
+        self.ecs_service.task_definition.default_container.add_secret(
+            "SES_SENDER_EMAIL", ecs.Secret.from_secrets_manager(secret, "SES_SENDER_EMAIL")
+        )
+        self.ecs_service.task_definition.default_container.add_secret(
+            "SES_DESTINATION_EMAIL", ecs.Secret.from_secrets_manager(secret, "SES_DESTINATION_EMAIL")
+        )
+        self.ecs_service.task_definition.default_container.add_secret(
+            "AWS_REGION", ecs.Secret.from_secrets_manager(secret, "AWS_REGION")
+        )
+        self.ecs_service.task_definition.default_container.add_secret(
+            "AWS_ACCESS_KEY", ecs.Secret.from_secrets_manager(secret, "AWS_ACCESS_KEY")
+        )
+        self.ecs_service.task_definition.default_container.add_secret(
+            "AWS_SECRET_ACCESS_KEY", ecs.Secret.from_secrets_manager(secret, "AWS_SECRET_ACCESS_KEY")
+        )
 
         # Grant ECR Pull Permissions to Task Execution Role
         self.ecr_repo.grant_pull(self.ecs_service.task_definition.execution_role)

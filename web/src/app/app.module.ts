@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Lara from '@primeng/themes/aura';
+import { provideHttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import Lara from '@primeng/themes/aura';
     AppRoutingModule
   ],
   providers: [
+    MessageService,
+    provideHttpClient(),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {

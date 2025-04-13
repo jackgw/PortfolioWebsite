@@ -1,4 +1,5 @@
 export const environment = {
-  clientHost: "localhost:4200",
-  apiHost: "localhost:80/api/v1"
+  clientHost: "http://localhost:4200",
+  assetHost: "http://localhost:4200",
+  apiHost: "http://localhost/api/v1"
 };

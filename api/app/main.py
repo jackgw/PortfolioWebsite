@@ -4,6 +4,9 @@ from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from config import API_VERSION, API_PREFIX
 
+# Sub-Routers
+from routers.email import router as EmailRouter
+
 db_url = os.environ.get("DATABASE_URL")
 
 app = FastAPI(
@@ -17,9 +20,9 @@ router = APIRouter(prefix=API_PREFIX)
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["Get", "Post", "Put", "Delete"],
+    allow_methods=["*"],
     allow_headers=["*"],    
 )
 
@@ -28,13 +31,14 @@ app.add_middleware(
 async def status():
     return {"API Status": "Active"}
 
-# Routes
+# Version
 @router.get("/version")
 async def version():
     return {"API Version": API_VERSION}
 
-# Register router
-app.include_router(router)
+# Register router(s)
+app.include_router(router, tags=["utility"])
+app.include_router(EmailRouter, prefix=f"{API_PREFIX}/email", tags=["email"])
 
 # Start App
 if __name__ == "__main__":

@@ -29,7 +29,7 @@ The Portfolio Application is a full-stack web application made for personal use 
 |   ├── src
 |   ├── angular.json
 |   └── package.json
-├── README.md
+├── static
 └── README.md
 ```
 
@@ -45,10 +45,16 @@ The Portfolio Application is a full-stack web application made for personal use 
 - AWS CDK
 
 ## Environment Variables
-Create a `.env` file in the `/api` directory and define the following environment variables:
+Create a `.env` file in the `/api` directory and define the following environment variables (substitute your own values):
 ```
+SES_SENDER_EMAIL=source@example.com
+SES_DESTINATION_EMAIL=dest@example.com
+AWS_REGION=us-west-2
+AWS_ACCESS_KEY=<access-key>
+AWS_SECRET_ACCESS_KEY=<secret-key>
 DATABASE_URL=postgresql://user:password@host:port/dbname
 ```
+In AWS, create a new secret in the secrets manager called `portfolio_api_env`, make it a key/value type secret, and add all the same keys/values as the local .env file. This will be used for deployment as the .env file is not included in the repo.
 
 ## Local Installation
 ### Prerequisites:
@@ -112,31 +118,46 @@ The `cdk` directory contains the specification for the deployment of the entire 
    - Paste secret key (ghp_...) in plaintext box.
    - Secret name: "github_auth_token"
    - Save
-4. Configure AWS CLI with credentials
+4. Generate AWS access credentials
+   - Open AWS IAM console
+   - Create new user with "Administrator" permissions
+   - View newly created IAM user
+   - Security Credentials -> Access Keys -> Create Access Key
+   - Choose "Other" type and a relavent description tag.
+   - Copy access key and secret key to local .env file.
+5. Store env variables in AWS Secrets Manager.
+   - Open AWS Secrets Manager console
+   - Add new secret
+   - Type: "Other type of secret"
+   - Key/Value Pairs: Key/value
+   - Copy all keys and values from local .env file
+   - Secret name: "portfolio_api_env"
+   - Save
+6. Configure AWS CLI with credentials
    ```bash
    aws configure
    ```
-5. Ensure updated version of Node.js
+7. Ensure updated version of Node.js
    ```bash
    nvm install 22.0.0
    ```
-6. Navigate to the `cdk` directory
+8. Navigate to the `cdk` directory
    ```bash
    cd cdk
    ```
-7. Create a virtual environment
+9. Create a virtual environment
    ```bash
    python -m venv venv
    ```
-8. Activate virtual environment
+10. Activate virtual environment
    ```bash
    source venv/bin/activate
    ```
-9. Bootstrap AWS CDK
+11. Bootstrap AWS CDK
    ```bash
    cdk bootstrap
    ```
-10. Deploy all CDK stacks
+12. Deploy all CDK stacks
    ```bash
    cdk deploy --all
    ```
@@ -147,7 +168,7 @@ cdk destroy --all
 ```
 
 ## API Documentation
-The API documentation is available via FastAPI's interactive docs:
+The API route documentation is available via FastAPI's interactive docs:
 - Swagger UI: `http://localhost/api/v1/docs`
 - Redoc UI: `http://localhost/api/v1/redoc`
 

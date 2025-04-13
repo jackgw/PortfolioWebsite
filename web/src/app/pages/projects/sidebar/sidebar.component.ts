@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { PanelMenu } from 'primeng/panelmenu';
 import { IsActiveMatchOptions, Router, RouterModule } from '@angular/router';
@@ -14,6 +14,10 @@ import { TagModule } from 'primeng/tag';
     providers: [MessageService]
 })
 export class SidebarComponent implements OnInit {
+    @Input() showHeader = true;
+
+    @Output() linkClicked = new EventEmitter()
+
     items: MenuItem[] = [];
 
     constructor(private router: Router) {}
@@ -182,5 +186,9 @@ export class SidebarComponent implements OnInit {
             default:
                 return undefined;
         }
+    }
+
+    linkClick() {
+        this.linkClicked.emit();
     }
 }
