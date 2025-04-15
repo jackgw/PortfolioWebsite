@@ -3,7 +3,7 @@
     <app-navbar class="navbar {{scrolled ? 'scrolled w-[90%] lg:w-[70%]' : 'w-[100%] lg:w-[80%]' }}"></app-navbar>
 
     <!-- Landing Page -->
-    <div class="w-full min-h-[100vh] p-5">
+    <div class="w-full min-h-[100vh] p-5 relative">
         <div class="w-[100%] md:w-[70%] mx-auto h-full">
             <!-- Static Navbar -->
             <!-- <app-navbar class="w-full"></app-navbar> -->
@@ -20,7 +20,7 @@
                     <p class="text-[2em] sm:text-[3em] xl:text-[4em] m-0 animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000 text-center lg:text-end">
                         Hi! I'm <b class="text-primary">Jack Wharton</b>.
                     </p>
-                    <p class="text-[1.2em] xl:text-[1.5em] m-0 animate-enter fade-in-10 slide-in-from-b-20 animate-duration-1000 text-center lg:text-end">
+                    <p class="text-[1em] sm:text-[1.2em] xl:text-[1.5em] m-0 animate-enter fade-in-10 slide-in-from-b-20 animate-duration-1000 text-center lg:text-end">
                         I'm a full-stack web developer from the Seattle area who specializes in creating <a class="text-primary">efficient</a>, <a class="text-primary">functional</a>, and <a class="text-primary">elegant</a> applications to solve real world problems.
                     </p>
                     <p-button 
@@ -99,7 +99,7 @@
         <!-- Source Code Highlight Content -->
         <div class="min-h-[400px] lg:min-h-[600px] w-[100%] md:w-[70%] mx-auto p-5 flex flex-col items-start justify-end gap-5" pAnimateOnScroll enterClass="animate-enter fade-in-10 slide-in-from-r-20 animate-duration-1000">
             <h2 class="m-0 text-[2em] lg:text-[3.5em] font-medium">Like this website?</h2>
-            <p class="m-0 text-[1.3em] lg:text-[1.5em]">Good news! It's <a class="text-primary" href="https://github.com/jackgw/PortfolioWebsite">open source</a>. Check out the links below to view the source code on my GitHub account or read more about how this website was created.</p>
+            <p class="m-0 text-[1em] sm:text-[1.3em] lg:text-[1.5em]">Good news! It's <a class="text-primary" href="https://github.com/jackgw/PortfolioWebsite">open source</a>. Check out the links below to view the source code on my GitHub account or read more about how this website was created.</p>
             <div class="flex flex-row gap-5">
                 <p-button label="Source Code" icon="pi pi-github" (click)="utilities.navigate(false, 'https://github.com/jackgw/PortfolioWebsite')"/>
                 <p-button label="Read More" icon="pi pi-arrow-right" iconPos="right" (click)="utilities.navigate(true, '/projects/portfolio')" />
