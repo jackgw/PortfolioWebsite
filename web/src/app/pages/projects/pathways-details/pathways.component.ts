@@ -4,6 +4,7 @@ import { Message } from 'primeng/message';
 import { Tag } from 'primeng/tag';
 import { Router } from '@angular/router';
 import { UtilitiesService } from 'src/app/services/utilities.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pathways',
@@ -14,6 +15,8 @@ import { UtilitiesService } from 'src/app/services/utilities.service';
 })
 export class PathwaysDetailsComponent implements AfterViewInit {
     private observer!: IntersectionObserver;
+
+    demoSrc = `${environment.assetHost}/projects/pathways/pathways_demo_full.mp4`
 
     constructor(
         private router: Router,

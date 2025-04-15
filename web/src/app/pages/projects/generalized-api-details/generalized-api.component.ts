@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Message } from 'primeng/message';
 import { Tag } from 'primeng/tag';
 import { ImageModule } from 'primeng/image';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-generalized-api',
@@ -12,5 +13,5 @@ import { ImageModule } from 'primeng/image';
   standalone: true
 })
 export class GeneralizedApiDetailsComponent {
-
+  thumbSrc = `${environment.assetHost}/projects/generalized_api/thumb.png`
 }

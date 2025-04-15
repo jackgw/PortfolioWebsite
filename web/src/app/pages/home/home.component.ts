@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { ContactComponent } from './contact/contact.component';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { ImageModule } from 'primeng/image';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,9 @@ import { ImageModule } from 'primeng/image';
 })
 export class HomeComponent {
   scrolled = false;
+  pathwaysThumbSrc = `${environment.assetHost}/projects/pathways/pathways_thumbnail.png`
+  svThumbSrc = `${environment.assetHost}/projects/social_valid/dashboard.png`
+  apiThumbSrc = `${environment.assetHost}/projects/generalized_api/thumb.png`
 
   constructor(public utilities: UtilitiesService) {}
 
