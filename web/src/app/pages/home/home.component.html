@@ -3,7 +3,7 @@
     <app-navbar class="navbar {{scrolled ? 'scrolled w-[90%] lg:w-[70%]' : 'w-[100%] lg:w-[80%]' }}"></app-navbar>
 
     <!-- Landing Page -->
-    <div class="w-full min-h-[100vh] p-5 relative">
+    <div class="w-full min-h-[100vh] p-5 relative z-1">
         <div class="w-[100%] md:w-[70%] mx-auto h-full">
             <!-- Static Navbar -->
             <!-- <app-navbar class="w-full"></app-navbar> -->
@@ -26,7 +26,7 @@
                     <p-button 
                         class="mt-5 animate-enter fade-in-10 slide-in-from-b-20 animate-duration-1000" 
                         (click)="utilities.navigate(true, '/projects')" 
-                        label="View my work and projects" 
+                        label="View my work" 
                         icon="pi pi-arrow-right"
                     />
                 </div>
@@ -91,7 +91,7 @@
     </div>
 
     <!-- Portfolio Source Code Highlight -->
-    <div class="w-full relative min-h-[400px] lg:min-h-[600px] mb-[40px] lg:mb-[80px]">
+    <div class="w-full relative min-h-[400px] lg:min-h-[600px] mb-[40px] lg:mb-[80px] z-1">
         <!-- Background Waves -->
         <div class="absolute top-[-2px] bottom-0 right-0 left-0 bg-primary wave-b-1 z-[-1]"></div>
         <div class="absolute top-[-2px] bottom-0 right-0 left-0 bg-primary-200 [html.app-dark_&]:bg-primary-700 wave-b-2 z-[-2]"></div>

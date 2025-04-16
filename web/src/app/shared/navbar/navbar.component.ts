@@ -72,6 +72,7 @@ export class NavbarComponent {
             // },
             {
                 label: 'Portfolio',
+                icon: 'pi pi-folder-open',
                 items: [
                     {
                         label: 'Social Valid',

@@ -4,9 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Lara from '@primeng/themes/aura';
 import { provideHttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { customThemePreset } from './theme-preset';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { MessageService } from 'primeng/api';
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Lara,
+        preset: customThemePreset,
         options: {
           darkModeSelector: '.app-dark'
         }
